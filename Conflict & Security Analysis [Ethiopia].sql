@@ -320,5 +320,28 @@
           SUM(deaths_a) + SUM(deaths_b) > 250
         ORDER BY 
           SUM(deaths_a) + SUM(deaths_b) DESC
+          
+        /* 17. What is the most number of conflicts that have happened in a single day all over the 
+	country? */
     
+         SELECT 
+                  date_start, COUNT(type_of_violence) AS number_of_instances 
+         FROM 
+                  conflict.ethiopia
+         GROUP BY 
+                  date_start
+         ORDER BY 
+                  COUNT(type_of_violence) DESC;
+
+         /*18.  What was the bloodiest day in Ethiopian history in the past 30 years? */
+
+         SELECT 
+                  date_start AS day, SUM(deaths_civilians) AS "Civilian Deaths" 
+         FROM 
+                  conflict.ethiopia
+         GROUP BY 
+                  date_start
+         ORDER BY 
+                  SUM(deaths_civilians) DESC
+
     
